@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Primary
+//@Primary
 public class BankServiceImpl2 implements BankService {
     private final BankAccountRepository bankAccountRepository;
     private final TransactionContext transactionContext;

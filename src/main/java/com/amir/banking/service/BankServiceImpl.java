@@ -8,11 +8,12 @@ import com.amir.banking.dto.TransactionDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.repository.BankAccountRepository;
 import com.amir.banking.util.BankingConstants;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-//@Primary
+@Primary
 public class BankServiceImpl implements BankService {
     private final BankAccountRepository bankAccountRepository;
     private final TransactionLogger transactionLogger;
