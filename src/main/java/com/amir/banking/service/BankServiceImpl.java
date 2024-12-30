@@ -82,7 +82,9 @@ public class BankServiceImpl implements BankService {
         if (fromAccount == null || toAccount == null) {
             throw new AccountNotFoundException(traceId);
         }
-
+        if (fromAccount.getBalance() < dto.getAmount()) {
+            throw new InsufficientFundException(traceId);
+        }
         double fromBalance = fromAccount.withdraw(dto.getAmount());
         toAccount.deposit(dto.getAmount());
         bankAccountRepository.save(fromAccount);
