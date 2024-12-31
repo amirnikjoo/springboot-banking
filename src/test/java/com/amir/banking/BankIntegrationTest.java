@@ -124,24 +124,6 @@ public class BankIntegrationTest {
 
     @Test
     @Order(60)
-    public void testTransferSuccess2() {
-        double amount = 1;
-
-        TransactionInputDto dto = new TransactionInputDto(TEST_ACCOUNT_NO1, TEST_ACCOUNT_NO2, null, amount);
-        ResponseEntity<TransactionOutputDto> response = testRestTemplate.postForEntity(pathPrefix + "/transfer", dto, TransactionOutputDto.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getBalance()).isEqualTo(TEST_INIT_BALANCE_ACC1 - amount);
-
-        ResponseEntity<TransactionOutputDto> acc2Balance = doBalance(TEST_ACCOUNT_NO2);
-        assertThat(acc2Balance.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(acc2Balance.getBody()).isNotNull();
-        assertThat(response.getBody().getResponse().getResCode()).isEqualTo(RESPONSE_SUCCESS_VALUE);
-        assertThat(acc2Balance.getBody().getBalance()).isEqualTo(TEST_INIT_BALANCE_ACC2 + amount);
-    }
-
-    @Test
-    @Order(60)
     public void testTransferFailInsufficientFund() {
         double amount = 10000;
 

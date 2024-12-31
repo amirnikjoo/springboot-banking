@@ -37,7 +37,6 @@ public class BankServiceImplStrategy implements BankService {
         if (account != null) {
             throw new AccountAlreadyExistsException(traceId);
         }
-        throw new RuntimeException("alaki");
     }
 
     @Transactional

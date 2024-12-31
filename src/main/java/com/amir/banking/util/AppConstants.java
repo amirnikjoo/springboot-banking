@@ -9,11 +9,17 @@ public class AppConstants {
 
     public static final int TEST_TRACE_ID_LEN = 16;
 
-    public static final double TEST_INIT_BALANCE_ACC1 = 1000;
-    public static final double TEST_INIT_BALANCE_ACC2 = 0;
-
     public static final String TEST_ACCOUNT_NO1 = "1";
+    public static final double TEST_BALANCE_ACC1 = 0;
+
     public static final String TEST_ACCOUNT_NO2 = "2";
+    public static final double TEST_BALANCE_ACC2 = 100000;
+
+    public static final String TEST_ACCOUNT_NO3 = "3";
+    public static final double TEST_BALANCE_ACC3 = 100000;
+
+    public static final String TEST_ACCOUNT_NO4 = "4";
+    public static final double TEST_BALANCE_ACC4 = 0;
 
     public static final String RESPONSE_SUCCESS_KEY = "Success";
     public static final String RESPONSE_SUCCESS_VALUE = "000";

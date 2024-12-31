@@ -30,101 +30,21 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws InterruptedException {
         if (bankAccountRepository.count() == 0) {
-            BankAccount bankAccount = new BankAccount(TEST_ACCOUNT_NO1, "Amir", TEST_INIT_BALANCE_ACC1);
+            BankAccount bankAccount = new BankAccount(TEST_ACCOUNT_NO1, "Account1", TEST_BALANCE_ACC1);
             bankAccountRepository.save(bankAccount);
             System.out.println("Inserted bank account: " + bankAccount.getName());
 
-            BankAccount bankAccount2 = new BankAccount(TEST_ACCOUNT_NO2, "Sepehr", TEST_INIT_BALANCE_ACC2);
+            BankAccount bankAccount2 = new BankAccount(TEST_ACCOUNT_NO2, "Account2", TEST_BALANCE_ACC2);
             bankAccountRepository.save(bankAccount2);
             System.out.println("Inserted bank account: " + bankAccount2.getName());
-        }
 
-        for (int i = 0; i < 5; i++) {
-            System.out.println("i = " + i);
-//            doConcurrentTest(TEST_ACCOUNT_NO1, TEST_ACCOUNT_NO2);
-        }
+            BankAccount bankAccount3 = new BankAccount(TEST_ACCOUNT_NO3, "Account3", TEST_BALANCE_ACC3);
+            bankAccountRepository.save(bankAccount3);
+            System.out.println("Inserted bank account: " + bankAccount3.getName());
 
-    }
-
-    @SneakyThrows
-    private void doConcurrentTest(String accNo1, String accNo2) throws InterruptedException {
-        Thread.sleep(1000);
-        System.out.println("start task with threads");
-
-        int numberOfThreads = 10;
-        int txnsPerThread = 10;
-        double depositAmount = 1;
-
-        ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
-
-        for (int i = 0; i < numberOfThreads; i++) {
-            executorService.submit(new DepositTask(new TransactionInputDto(accNo1, depositAmount), txnsPerThread));
-//            executorService.submit(new WithdrawTask(new TransactionDto(accNo1, depositAmount), txnsPerThread));
-//            executorService.submit(new TransferTask(new TransactionDto(accNo1, accNo2, depositAmount), txnsPerThread));
-        }
-
-        executorService.shutdown();
-
-        while (!executorService.isTerminated()) {
-            System.out.println("wait to terminate...");
-            Thread.sleep(1000);
-        }
-        System.out.println("finished task with threads");
-        System.out.println("final balance accNo1 is: " + bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionInputDto(accNo1)));
-        System.out.println("final balance accNo2 is: " + bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionInputDto(accNo2)));
-    }
-
-    public class DepositTask implements Runnable {
-        int txnsPerThread;
-        TransactionInputDto dto;
-
-        public DepositTask(TransactionInputDto dto, int txnsPerThread) {
-            this.dto = dto;
-            this.txnsPerThread = txnsPerThread;
-        }
-
-        @SneakyThrows
-        @Override
-        public void run() {
-            for (int i = 0; i < txnsPerThread; i++) {
-                bankService.doDeposit(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), dto);
-            }
-        }
-    }
-
-    public class WithdrawTask implements Runnable {
-        int txnsPerThread;
-        TransactionInputDto dto;
-
-        public WithdrawTask(TransactionInputDto dto, int txnsPerThread) {
-            this.dto = dto;
-            this.txnsPerThread = txnsPerThread;
-        }
-
-        @SneakyThrows
-        @Override
-        public void run() {
-            for (int i = 0; i < txnsPerThread; i++) {
-                bankService.doWithdraw(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), dto);
-            }
-        }
-    }
-
-    public class TransferTask implements Runnable {
-        int txnsPerThread;
-        TransactionInputDto dto;
-
-        public TransferTask(TransactionInputDto dto, int txnsPerThread) {
-            this.dto = dto;
-            this.txnsPerThread = txnsPerThread;
-        }
-
-        @SneakyThrows
-        @Override
-        public void run() {
-            for (int i = 0; i < txnsPerThread; i++) {
-                bankService.doTransfer(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), dto);
-            }
+            BankAccount bankAccount4 = new BankAccount(TEST_ACCOUNT_NO4, "Account4", TEST_BALANCE_ACC4);
+            bankAccountRepository.save(bankAccount4);
+            System.out.println("Inserted bank account: " + bankAccount4.getName());
         }
     }
 }
