@@ -32,6 +32,7 @@ public class GlobalExceptionHandler {
         transactionLogger.onTransaction(traceId, "className: " + simpleName);
 
         TransactionOutputDto outputDto = new TransactionOutputDto();
+        outputDto.setTraceId(ex.getTraceId());
         ResponseDto responseDto = responseMap.get(simpleName);
         responseDto.setReqDate(LocalDateTime.now().format(BankingConstants.formatter));
         outputDto.setResponse(responseDto);
