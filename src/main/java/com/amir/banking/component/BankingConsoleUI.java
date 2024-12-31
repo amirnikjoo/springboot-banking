@@ -8,12 +8,13 @@ import com.amir.banking.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 import static com.amir.banking.util.AppConstants.TEST_TRACE_ID_LEN;
 
-//@Component
+@Component
 @Order(2)
 public class BankingConsoleUI implements CommandLineRunner {
     private final BankService bankService;

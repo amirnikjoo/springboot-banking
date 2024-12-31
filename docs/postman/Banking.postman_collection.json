@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "27a33c3f-9d11-4331-b51f-b88b94098f05",
+		"name": "Banking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2598528"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\" : \"11\",\r\n    \"holderName\" : \"Saeed\",\r\n    \"amount\" : 0.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/account/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNo\" : \"11\",\r\n    \"name\" : \"Saeed\",\r\n    \"amount\" : 0.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/account/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:46:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"4095288c7848fe76\",\n    \"account\": \"11\",\n    \"name\": \"Saeed\",\n    \"balance\": 0,\n    \"response\": {\n        \"resCode\": \"000\",\n        \"resDescFa\": \"تراکنش با موفقیت انجام شد\",\n        \"resDescEn\": \"Success\",\n        \"reqDate\": \"2024-12-31,13:16:13,049419\",\n        \"extraData\": null\n    }\n}"
+				},
+				{
+					"name": "create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNo\" : \"11\",\r\n    \"name\" : \"Saeed\",\r\n    \"amount\" : 0.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/account/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:46:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"04a327eb360986b8\",\n    \"response\": {\n        \"resCode\": \"002\",\n        \"resDescFa\": \"شماره حساب تکراری است\",\n        \"resDescEn\": \"AccountAlreadyExistsException\",\n        \"reqDate\": \"2024-12-31,13:16:21,180177\",\n        \"extraData\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/account/balance/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"balance",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "balance",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/account/balance/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"balance",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:47:44 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"09ce72823c67f65f\",\n    \"account\": \"2\",\n    \"name\": \"Account2\",\n    \"balance\": 99998,\n    \"response\": {\n        \"resCode\": \"000\",\n        \"resDescFa\": \"تراکنش با موفقیت انجام شد\",\n        \"resDescEn\": \"Success\",\n        \"reqDate\": \"2024-12-31,13:17:44,897230\",\n        \"extraData\": null\n    }\n}"
+				},
+				{
+					"name": "balance",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/account/balance/2111",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"balance",
+								"2111"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:47:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"51a8b14a13474abe\",\n    \"response\": {\n        \"resCode\": \"001\",\n        \"resDescFa\": \"شماره حسابی یافت نشد\",\n        \"resDescEn\": \"AccountNotFoundException\",\n        \"reqDate\": \"2024-12-31,13:17:57,882211\",\n        \"extraData\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "deposit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNo\" : \"1\",\r\n    \"amount\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/account/deposit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"deposit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "deposit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNo\" : \"1\",\r\n    \"amount\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/account/deposit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"deposit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:46:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"d3cc0144c1377885\",\n    \"account\": \"1\",\n    \"name\": \"Account1\",\n    \"balance\": 1,\n    \"response\": {\n        \"resCode\": \"000\",\n        \"resDescFa\": \"تراکنش با موفقیت انجام شد\",\n        \"resDescEn\": \"Success\",\n        \"reqDate\": \"2024-12-31,13:16:42,799721\",\n        \"extraData\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "withdraw",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNo\" : \"2\",\r\n    \"amount\" : 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/account/withdraw",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"withdraw"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "withdraw",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNo\" : \"2\",\r\n    \"amount\" : 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/account/withdraw",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:48:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"36b0df8b5061a347\",\n    \"account\": \"2\",\n    \"name\": \"Account2\",\n    \"balance\": 99993,\n    \"response\": {\n        \"resCode\": \"000\",\n        \"resDescFa\": \"تراکنش با موفقیت انجام شد\",\n        \"resDescEn\": \"Success\",\n        \"reqDate\": \"2024-12-31,13:18:46,556169\",\n        \"extraData\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNo\" : \"2\",\r\n    \"accountTo\" : \"1\",\r\n    \"amount\" : 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/account/withdraw",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"withdraw"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "transfer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNo\" : \"2\",\r\n    \"accountTo\" : \"1\",\r\n    \"amount\" : 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/account/withdraw",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 31 Dec 2024 09:49:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"traceId\": \"872fdb4a2565cbf4\",\n    \"account\": \"2\",\n    \"name\": \"Account2\",\n    \"balance\": 99986,\n    \"response\": {\n        \"resCode\": \"000\",\n        \"resDescFa\": \"تراکنش با موفقیت انجام شد\",\n        \"resDescEn\": \"Success\",\n        \"reqDate\": \"2024-12-31,13:19:03,135091\",\n        \"extraData\": null\n    }\n}"
+				}
+			]
+		}
+	]
+}

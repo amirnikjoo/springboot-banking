@@ -32,7 +32,7 @@ public class BankServiceImplStrategy implements BankService {
     }
 
     private void createAccountValidation(String traceId, TransactionInputDto dto) throws Exception {
-        //todo: account validation and checking here
+        //account validation and checking here
         BankAccount account = bankAccountRepository.findByAccountNumber(dto.getAccountNo());
         if (account != null) {
             throw new AccountAlreadyExistsException(traceId);
