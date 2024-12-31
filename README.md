@@ -6,7 +6,7 @@
 * The `<Strategy Pattern>` is employed in the BankServiceImplStrategy class, with a simplified version available in the BankServiceImpl class. You can toggle the @Primary annotation on either class as needed.
 * The `<BankingConsoleUI>` class has been implemented and is ready for use when the application is run.
 * The log file is set to `<log\transactions.log>`, which can be modified in the application.properties.
-* `<Thread safety and integration test>` classes are included in the test folder.
+* `<Thread safety and integration test>` classes are included in the test folder. in case of running, comment @Component at  [BankingConsoleUI.java](src%2Fmain%2Fjava%2Fcom%2Famir%2Fbanking%2Fcomponent%2FBankingConsoleUI.java) and run tests safely.
 * A `<Postman collection>` is accessible in the docs\postman directory.
 
 Thank you,

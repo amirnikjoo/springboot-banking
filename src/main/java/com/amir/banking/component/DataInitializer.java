@@ -1,17 +1,11 @@
 package com.amir.banking.component;
 
-import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.repository.BankAccountRepository;
 import com.amir.banking.service.BankService;
-import com.amir.banking.util.StringUtil;
-import lombok.SneakyThrows;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static com.amir.banking.util.AppConstants.*;
 
