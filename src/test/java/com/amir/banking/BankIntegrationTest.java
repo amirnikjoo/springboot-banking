@@ -19,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BankIntegrationTest {
     private static final String pathPrefix = "/api/v1/account";
+
     private static final String createAccountNo1 = "111";
     private static final Double initBalanceAcc1 = 100.0;
 
@@ -31,27 +32,27 @@ public class BankIntegrationTest {
     @Test
     @Order(10)
     public void testCreateUserSuccess() {
-        TransactionInputDto dto1 = new TransactionInputDto(createAccountNo1, "", "Omid", initBalanceAcc1);
+        TransactionInputDto dto1 = new TransactionInputDto(createAccountNo1, "", "Name1", initBalanceAcc1);
         ResponseEntity<TransactionOutputDto> response = testRestTemplate.postForEntity(pathPrefix + "/create", dto1, TransactionOutputDto.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getResponse().getResCode()).isEqualTo(RESPONSE_SUCCESS_VALUE);
-        assertThat(response.getBody().getName()).isEqualTo("Omid");
+        assertThat(response.getBody().getName()).isEqualTo("Name1");
         assertThat(response.getBody().getBalance()).isEqualTo(initBalanceAcc1);
 
-        TransactionInputDto dto2 = new TransactionInputDto(createAccountNo2, "", "Saeed", initBalanceAcc2);
+        TransactionInputDto dto2 = new TransactionInputDto(createAccountNo2, "", "Name2", initBalanceAcc2);
         ResponseEntity<TransactionOutputDto> response2 = testRestTemplate.postForEntity(pathPrefix + "/create", dto2, TransactionOutputDto.class);
         assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response2.getBody()).isNotNull();
         assertThat(response.getBody().getResponse().getResCode()).isEqualTo(RESPONSE_SUCCESS_VALUE);
-        assertThat(response2.getBody().getName()).isEqualTo("Saeed");
+        assertThat(response2.getBody().getName()).isEqualTo("Name2");
         assertThat(response2.getBody().getBalance()).isEqualTo(initBalanceAcc2);
     }
 
     @Test
     @Order(15)
     public void testCreateUserFailDuplicateAccountNo() {
-        TransactionInputDto dto = new TransactionInputDto(createAccountNo1, "", "Omid", initBalanceAcc1);
+        TransactionInputDto dto = new TransactionInputDto(createAccountNo1, "", "Name", initBalanceAcc1);
         ResponseEntity<TransactionOutputDto> response = testRestTemplate.postForEntity(pathPrefix + "/create", dto, TransactionOutputDto.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isNotNull();
