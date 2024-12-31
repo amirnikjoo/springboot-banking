@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"account\" : \"11\",\r\n    \"holderName\" : \"Saeed\",\r\n    \"amount\" : 0.0\r\n}",
+					"raw": "{\r\n    \"accountNo\" : \"11\",\r\n    \"name\" : \"Saeed\",\r\n    \"amount\" : 0.0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -151,7 +151,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/account/balance/1",
+					"raw": "localhost:8080/api/v1/account/balance/2",
 					"host": [
 						"localhost"
 					],
@@ -161,7 +161,7 @@
 						"v1",
 						"account",
 						"balance",
-						"1"
+						"2"
 					]
 				}
 			},
