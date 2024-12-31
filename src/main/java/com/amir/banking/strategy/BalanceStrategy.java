@@ -5,7 +5,7 @@ import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.component.TransactionLogger;
 import com.amir.banking.repository.BankAccountRepository;
-import com.amir.banking.util.BankingConstants;
+import com.amir.banking.util.AppConstants;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +24,7 @@ public class BalanceStrategy implements TransactionStrategy {
         if (account == null) {
             throw new AccountNotFoundException(traceId);
         }
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_BALANCE, account.getBalance());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_BALANCE, account.getBalance());
         return account;
     }
 }

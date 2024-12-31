@@ -6,7 +6,7 @@ import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.component.TransactionLogger;
 import com.amir.banking.repository.BankAccountRepository;
-import com.amir.banking.util.BankingConstants;
+import com.amir.banking.util.AppConstants;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,8 +39,8 @@ public class TransferStrategy implements TransactionStrategy {
         toAccount.deposit(amount);
         bankAccountRepository.save(fromAccount);
         bankAccountRepository.save(toAccount);
-        transactionLogger.onTransaction(traceId, accountFrom, BankingConstants.TRANSACTION_TYPE_TRANSFER_FROM, amount);
-        transactionLogger.onTransaction(traceId, accountTo, BankingConstants.TRANSACTION_TYPE_TRANSFER_TO, amount);
+        transactionLogger.onTransaction(traceId, accountFrom, AppConstants.TRANSACTION_TYPE_TRANSFER_FROM, amount);
+        transactionLogger.onTransaction(traceId, accountTo, AppConstants.TRANSACTION_TYPE_TRANSFER_TO, amount);
         return fromAccount;
     }
 }

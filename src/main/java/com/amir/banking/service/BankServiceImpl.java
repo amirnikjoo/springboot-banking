@@ -7,13 +7,12 @@ import com.amir.banking.core.InsufficientFundException;
 import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.repository.BankAccountRepository;
-import com.amir.banking.util.BankingConstants;
-import org.springframework.context.annotation.Primary;
+import com.amir.banking.util.AppConstants;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Primary
+//@Primary
 public class BankServiceImpl implements BankService {
     private final BankAccountRepository bankAccountRepository;
     private final TransactionLogger transactionLogger;
@@ -28,7 +27,7 @@ public class BankServiceImpl implements BankService {
         createAccountValidation(traceId, dto);
 
         BankAccount newAccount = bankAccountRepository.save( new BankAccount(dto.getAccountNo(), dto.getName(), dto.getAmount()));
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_CREATE_ACCOUNT, dto.getAmount());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_CREATE_ACCOUNT, dto.getAmount());
 
         return newAccount;
     }
@@ -52,7 +51,7 @@ public class BankServiceImpl implements BankService {
         account.deposit(dto.getAmount());
         bankAccountRepository.save(account);
 
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_DEPOSIT, dto.getAmount());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_DEPOSIT, dto.getAmount());
         return account;
     }
 
@@ -69,7 +68,7 @@ public class BankServiceImpl implements BankService {
         account.withdraw(dto.getAmount());
         bankAccountRepository.save(account);
 
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_WITHDRAW, dto.getAmount());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_WITHDRAW, dto.getAmount());
         return account;
     }
 
@@ -90,8 +89,8 @@ public class BankServiceImpl implements BankService {
         toAccount.deposit(dto.getAmount());
         bankAccountRepository.save(fromAccount);
         bankAccountRepository.save(toAccount);
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_TRANSFER_FROM, dto.getAmount());
-        transactionLogger.onTransaction(traceId, dto.getAccountTo(), BankingConstants.TRANSACTION_TYPE_TRANSFER_TO, dto.getAmount());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_TRANSFER_FROM, dto.getAmount());
+        transactionLogger.onTransaction(traceId, dto.getAccountTo(), AppConstants.TRANSACTION_TYPE_TRANSFER_TO, dto.getAmount());
         return fromAccount;
 
     }
@@ -101,7 +100,7 @@ public class BankServiceImpl implements BankService {
         if (account == null) {
             throw new AccountNotFoundException(traceId);
         }
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_BALANCE, account.getBalance());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_BALANCE, account.getBalance());
         return account;
     }
 }

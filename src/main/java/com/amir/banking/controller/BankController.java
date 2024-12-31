@@ -6,7 +6,7 @@ import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.dto.TransactionOutputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.service.BankService;
-import com.amir.banking.util.BankingConstants;
+import com.amir.banking.util.DateUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.sleuth.Tracer;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static com.amir.banking.util.BankingConstants.RESPONSE_SUCCESS;
-import static com.amir.banking.util.BankingConstants.responseMap;
+import static com.amir.banking.util.AppConstants.RESPONSE_SUCCESS_KEY;
+import static com.amir.banking.util.AppConstants.responseMap;
 
 @RestController
 @RequestMapping("/api/v1/account")
@@ -45,8 +45,8 @@ public class BankController {
     private TransactionOutputDto prepareOutput(String traceId, BankAccount account) {
         TransactionOutputDto outputDto = modelMapper.map(account, TransactionOutputDto.class);
         outputDto.setTraceId(traceId);
-        ResponseDto response = responseMap.get(RESPONSE_SUCCESS);
-        response.setReqDate(LocalDateTime.now().format(BankingConstants.formatter));
+        ResponseDto response = responseMap.get(RESPONSE_SUCCESS_KEY);
+        response.setReqDate(LocalDateTime.now().format(DateUtil.formatter));
         outputDto.setResponse(response);
         return outputDto;
     }

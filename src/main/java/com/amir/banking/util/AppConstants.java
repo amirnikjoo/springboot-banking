@@ -2,13 +2,10 @@ package com.amir.banking.util;
 
 import com.amir.banking.dto.ResponseDto;
 
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BankingConstants {
-
-    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd,HH:mm:ss,SSSSSS");
+public class AppConstants {
 
     public static final int TEST_TRACE_ID_LEN = 16;
 
@@ -18,7 +15,8 @@ public class BankingConstants {
     public static final String TEST_ACCOUNT_NO1 = "1";
     public static final String TEST_ACCOUNT_NO2 = "2";
 
-    public static final String RESPONSE_SUCCESS = "Success";
+    public static final String RESPONSE_SUCCESS_KEY = "Success";
+    public static final String RESPONSE_SUCCESS_VALUE = "000";
 
     public static final String TRANSACTION_TYPE_CREATE_ACCOUNT = "CREATE_ACCOUNT";
     public static final String TRANSACTION_TYPE_BALANCE = "BALANCE";

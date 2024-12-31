@@ -3,16 +3,15 @@ package com.amir.banking.component;
 import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.service.BankService;
-import com.amir.banking.service.BankServiceImpl2;
+import com.amir.banking.service.BankServiceImplStrategy;
 import com.amir.banking.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-import static com.amir.banking.util.BankingConstants.TEST_TRACE_ID_LEN;
+import static com.amir.banking.util.AppConstants.TEST_TRACE_ID_LEN;
 
 //@Component
 @Order(2)
@@ -20,7 +19,7 @@ public class BankingConsoleUI implements CommandLineRunner {
     private final BankService bankService;
 
     @Autowired
-    public BankingConsoleUI(BankServiceImpl2 bankService) {
+    public BankingConsoleUI(BankServiceImplStrategy bankService) {
         this.bankService = bankService;
     }
 

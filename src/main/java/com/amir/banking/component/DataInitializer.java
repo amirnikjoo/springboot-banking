@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static com.amir.banking.util.BankingConstants.*;
+import static com.amir.banking.util.AppConstants.*;
 
 @Component
 @Order(1)

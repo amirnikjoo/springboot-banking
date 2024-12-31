@@ -6,7 +6,7 @@ import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.component.TransactionLogger;
 import com.amir.banking.repository.BankAccountRepository;
-import com.amir.banking.util.BankingConstants;
+import com.amir.banking.util.AppConstants;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,7 +31,7 @@ public class WithdrawStrategy implements TransactionStrategy {
         account.withdraw(dto.getAmount());
         bankAccountRepository.save(account);
 
-        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_WITHDRAW, dto.getAmount());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), AppConstants.TRANSACTION_TYPE_WITHDRAW, dto.getAmount());
         return account;
     }
 }

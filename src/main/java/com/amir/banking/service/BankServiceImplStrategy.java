@@ -6,17 +6,18 @@ import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.repository.BankAccountRepository;
 import com.amir.banking.strategy.*;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-//@Primary
-public class BankServiceImpl2 implements BankService {
+@Primary
+public class BankServiceImplStrategy implements BankService {
     private final BankAccountRepository bankAccountRepository;
     private final TransactionContext transactionContext;
     private final TransactionLogger logger;
 
-    public BankServiceImpl2(BankAccountRepository bankAccountRepository, TransactionContext transactionContext, TransactionLogger logger) {
+    public BankServiceImplStrategy(BankAccountRepository bankAccountRepository, TransactionContext transactionContext, TransactionLogger logger) {
         this.bankAccountRepository = bankAccountRepository;
         this.transactionContext = transactionContext;
         this.logger = logger;
@@ -36,6 +37,7 @@ public class BankServiceImpl2 implements BankService {
         if (account != null) {
             throw new AccountAlreadyExistsException(traceId);
         }
+        throw new RuntimeException("alaki");
     }
 
     @Transactional
