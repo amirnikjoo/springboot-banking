@@ -1,16 +1,16 @@
 package com.amir.banking.service;
 
-import com.amir.banking.dto.TransactionDto;
+import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 
 public interface BankService {
-    BankAccount createAccount(String traceId, TransactionDto dto) throws Exception;
+    BankAccount createAccount(String traceId, TransactionInputDto dto) throws Exception;
 
-    double doDeposit(String traceId, TransactionDto dto) throws Exception;
+    BankAccount doDeposit(String traceId, TransactionInputDto dto) throws Exception;
 
-    double doWithdraw(String traceId, TransactionDto dto) throws Exception;
+    BankAccount doWithdraw(String traceId, TransactionInputDto dto) throws Exception;
 
-    double getBalance(String traceId, TransactionDto dto) throws Exception;
+    BankAccount getBalance(String traceId, TransactionInputDto dto) throws Exception;
 
-    double doTransfer(String traceId,TransactionDto dto) throws Exception;
+    BankAccount doTransfer(String traceId, TransactionInputDto dto) throws Exception;
 }

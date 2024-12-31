@@ -20,10 +20,10 @@ public class BankAccount {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String accountNumber;
+    private String accountNo;
 
     @Column(nullable = false)
-    private String accountHolder;
+    private String name;
 
     @Column(nullable = false)
     private double balance;
@@ -32,9 +32,9 @@ public class BankAccount {
     @JsonIgnore
     private int version;
 
-    public BankAccount(String accountNumber, String accountHolder, double initialBalance) {
-        this.accountNumber = accountNumber;
-        this.accountHolder = accountHolder;
+    public BankAccount(String accountNo, String name, double initialBalance) {
+        this.accountNo = accountNo;
+        this.name = name;
         this.balance = initialBalance;
     }
 

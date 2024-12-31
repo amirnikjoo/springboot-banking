@@ -1,13 +1,12 @@
 package com.amir.banking.component;
 
-import com.amir.banking.dto.TransactionDto;
+import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.service.BankService;
 import com.amir.banking.service.BankServiceImpl2;
 import com.amir.banking.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
@@ -32,7 +31,7 @@ public class BankingConsoleUI implements CommandLineRunner {
         System.out.print("enter source accountNo: ");
         accountNo = scanner.next();
         try {
-            bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionDto(accountNo));
+            bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionInputDto(accountNo));
         } catch (Exception e) {
             System.out.println("invalid account number, try again...");
         }
@@ -45,19 +44,19 @@ public class BankingConsoleUI implements CommandLineRunner {
             switch (choice) {
                 case 1:
                     System.out.printf("Current Balance: %.2f%n",
-                            bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionDto(accountNo)));
+                            bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionInputDto(accountNo)));
                     break;
                 case 2:
                     System.out.print("Enter amount to deposit: ");
                     double depositAmount = scanner.nextDouble();
                     bankService.doDeposit(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN),
-                            new TransactionDto(accountNo, depositAmount));
+                            new TransactionInputDto(accountNo, depositAmount));
                     break;
                 case 3:
                     System.out.print("Enter amount to withdraw: ");
                     double withdrawAmount = scanner.nextDouble();
                     bankService.doWithdraw(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN),
-                            new TransactionDto(accountNo, withdrawAmount));
+                            new TransactionInputDto(accountNo, withdrawAmount));
                     break;
                 case 4:
                     System.out.print("Enter destination account: ");
@@ -65,7 +64,7 @@ public class BankingConsoleUI implements CommandLineRunner {
                     System.out.print("Enter amount to transfer: ");
                     double transferAmount = scanner.nextDouble();
                     bankService.doTransfer(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN),
-                            new TransactionDto(accountNo, accountNo2, transferAmount));
+                            new TransactionInputDto(accountNo, accountNo2, transferAmount));
                     break;
                 case 0:
                     System.out.println("Thank you for using the Banking Application!");

@@ -2,7 +2,7 @@ package com.amir.banking.strategy;
 
 import com.amir.banking.core.AccountNotFoundException;
 import com.amir.banking.core.InsufficientFundException;
-import com.amir.banking.dto.TransactionDto;
+import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.component.TransactionLogger;
 import com.amir.banking.repository.BankAccountRepository;
@@ -20,8 +20,8 @@ public class TransferStrategy implements TransactionStrategy {
     }
 
     @Override  
-    public BankAccount execute(String traceId, TransactionDto dto) throws Exception {
-        String accountFrom = dto.getAccount();
+    public BankAccount execute(String traceId, TransactionInputDto dto) throws Exception {
+        String accountFrom = dto.getAccountNo();
         String accountTo = dto.getAccountTo();
 
         BankAccount fromAccount = bankAccountRepository.findByAccountNumber(accountFrom);

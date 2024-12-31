@@ -1,7 +1,7 @@
 package com.amir.banking.strategy;
 
 import com.amir.banking.core.AccountNotFoundException;
-import com.amir.banking.dto.TransactionDto;
+import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.component.TransactionLogger;
 import com.amir.banking.repository.BankAccountRepository;
@@ -19,12 +19,12 @@ public class BalanceStrategy implements TransactionStrategy {
     }
 
     @Override
-    public BankAccount execute(String traceId, TransactionDto dto) throws Exception {
-        BankAccount account = bankAccountRepository.findByAccountNumber(dto.getAccount());
+    public BankAccount execute(String traceId, TransactionInputDto dto) throws Exception {
+        BankAccount account = bankAccountRepository.findByAccountNumber(dto.getAccountNo());
         if (account == null) {
             throw new AccountNotFoundException(traceId);
         }
-        transactionLogger.onTransaction(traceId, dto.getAccount(), BankingConstants.TRANSACTION_TYPE_BALANCE, account.getBalance());
+        transactionLogger.onTransaction(traceId, dto.getAccountNo(), BankingConstants.TRANSACTION_TYPE_BALANCE, account.getBalance());
         return account;
     }
 }

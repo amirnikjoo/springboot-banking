@@ -1,11 +1,14 @@
 package com.amir.banking.util;
 
-import com.amir.banking.dto.ResponseErrorDto;
+import com.amir.banking.dto.ResponseDto;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BankingConstants {
+
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd,HH:mm:ss,SSSSSS");
 
     public static final int TEST_TRACE_ID_LEN = 16;
 
@@ -14,6 +17,8 @@ public class BankingConstants {
 
     public static final String TEST_ACCOUNT_NO1 = "1";
     public static final String TEST_ACCOUNT_NO2 = "2";
+
+    public static final String RESPONSE_SUCCESS = "Success";
 
     public static final String TRANSACTION_TYPE_CREATE_ACCOUNT = "CREATE_ACCOUNT";
     public static final String TRANSACTION_TYPE_BALANCE = "BALANCE";
@@ -25,14 +30,16 @@ public class BankingConstants {
     public static final String EXCEPTIONS_UNHANDLED = "UnhandledException";
 
     //todo: all exceptions go to db
-    public static final Map<String, ResponseErrorDto> errorMap = new HashMap<>();
+    public static final Map<String, ResponseDto> responseMap = new HashMap<>();
     static {
-        errorMap.put("AccountNotFoundException", new ResponseErrorDto("001", "شماره حسابی یافت نشد", "AccountNotFoundException", 400));
-        errorMap.put("AccountAlreadyExistsException", new ResponseErrorDto("002", "شماره حساب تکراری است", "AccountAlreadyExistsException", 400));
+        responseMap.put("Success", new ResponseDto("000", "تراکنش با موفقیت انجام شد", "Success", 200));
 
-        errorMap.put("InsufficientFundException", new ResponseErrorDto("201", "مانده کافی نیست", "InsufficientFundException", 400));
-        errorMap.put("TransactionStrategyNoFoundException", new ResponseErrorDto("801", "خطای داخلی برنامه", "TransactionStrategyNoFoundException", 500));
+        responseMap.put("AccountNotFoundException", new ResponseDto("001", "شماره حسابی یافت نشد", "AccountNotFoundException", 400));
+        responseMap.put("AccountAlreadyExistsException", new ResponseDto("002", "شماره حساب تکراری است", "AccountAlreadyExistsException", 400));
 
-        errorMap.put("UnhandledException", new ResponseErrorDto("999", "خطای داخلی", "UnhandledException", 500));
+        responseMap.put("InsufficientFundException", new ResponseDto("201", "مانده کافی نیست", "InsufficientFundException", 400));
+        responseMap.put("TransactionStrategyNoFoundException", new ResponseDto("801", "خطای داخلی برنامه", "TransactionStrategyNoFoundException", 500));
+
+        responseMap.put("UnhandledException", new ResponseDto("999", "خطای داخلی", "UnhandledException", 500));
     }
 }

@@ -1,6 +1,6 @@
 package com.amir.banking.component;
 
-import com.amir.banking.dto.TransactionDto;
+import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.repository.BankAccountRepository;
 import com.amir.banking.service.BankService;
@@ -32,11 +32,11 @@ public class DataInitializer implements CommandLineRunner {
         if (bankAccountRepository.count() == 0) {
             BankAccount bankAccount = new BankAccount(TEST_ACCOUNT_NO1, "Amir", TEST_INIT_BALANCE_ACC1);
             bankAccountRepository.save(bankAccount);
-            System.out.println("Inserted bank account: " + bankAccount.getAccountHolder());
+            System.out.println("Inserted bank account: " + bankAccount.getName());
 
             BankAccount bankAccount2 = new BankAccount(TEST_ACCOUNT_NO2, "Sepehr", TEST_INIT_BALANCE_ACC2);
             bankAccountRepository.save(bankAccount2);
-            System.out.println("Inserted bank account: " + bankAccount2.getAccountHolder());
+            System.out.println("Inserted bank account: " + bankAccount2.getName());
         }
 
         for (int i = 0; i < 5; i++) {
@@ -58,7 +58,7 @@ public class DataInitializer implements CommandLineRunner {
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
 
         for (int i = 0; i < numberOfThreads; i++) {
-            executorService.submit(new DepositTask(new TransactionDto(accNo1, depositAmount), txnsPerThread));
+            executorService.submit(new DepositTask(new TransactionInputDto(accNo1, depositAmount), txnsPerThread));
 //            executorService.submit(new WithdrawTask(new TransactionDto(accNo1, depositAmount), txnsPerThread));
 //            executorService.submit(new TransferTask(new TransactionDto(accNo1, accNo2, depositAmount), txnsPerThread));
         }
@@ -70,15 +70,15 @@ public class DataInitializer implements CommandLineRunner {
             Thread.sleep(1000);
         }
         System.out.println("finished task with threads");
-        System.out.println("final balance accNo1 is: " + bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionDto(accNo1)));
-        System.out.println("final balance accNo2 is: " + bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionDto(accNo2)));
+        System.out.println("final balance accNo1 is: " + bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionInputDto(accNo1)));
+        System.out.println("final balance accNo2 is: " + bankService.getBalance(StringUtil.generateRandomTraceId(TEST_TRACE_ID_LEN), new TransactionInputDto(accNo2)));
     }
 
     public class DepositTask implements Runnable {
         int txnsPerThread;
-        TransactionDto dto;
+        TransactionInputDto dto;
 
-        public DepositTask(TransactionDto dto, int txnsPerThread) {
+        public DepositTask(TransactionInputDto dto, int txnsPerThread) {
             this.dto = dto;
             this.txnsPerThread = txnsPerThread;
         }
@@ -94,9 +94,9 @@ public class DataInitializer implements CommandLineRunner {
 
     public class WithdrawTask implements Runnable {
         int txnsPerThread;
-        TransactionDto dto;
+        TransactionInputDto dto;
 
-        public WithdrawTask(TransactionDto dto, int txnsPerThread) {
+        public WithdrawTask(TransactionInputDto dto, int txnsPerThread) {
             this.dto = dto;
             this.txnsPerThread = txnsPerThread;
         }
@@ -112,9 +112,9 @@ public class DataInitializer implements CommandLineRunner {
 
     public class TransferTask implements Runnable {
         int txnsPerThread;
-        TransactionDto dto;
+        TransactionInputDto dto;
 
-        public TransferTask(TransactionDto dto, int txnsPerThread) {
+        public TransferTask(TransactionInputDto dto, int txnsPerThread) {
             this.dto = dto;
             this.txnsPerThread = txnsPerThread;
         }

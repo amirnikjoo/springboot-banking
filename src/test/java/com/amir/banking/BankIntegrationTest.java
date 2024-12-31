@@ -1,7 +1,7 @@
 package com.amir.banking;
 
-import com.amir.banking.dto.ResponseErrorDto;
-import com.amir.banking.dto.TransactionDto;
+import com.amir.banking.dto.ResponseDto;
+import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -32,26 +32,26 @@ public class BankIntegrationTest {
     @Test
     @Order(10)
     public void testCreateUserSuccess() {
-        TransactionDto dto1 = new TransactionDto(createAccountNo1, "", "Omid", initBalanceAcc1);
+        TransactionInputDto dto1 = new TransactionInputDto(createAccountNo1, "", "Omid", initBalanceAcc1);
         ResponseEntity<BankAccount> response1 = testRestTemplate.postForEntity(pathPrefix + "/create", dto1, BankAccount.class);
         assertThat(response1.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response1.getBody()).isNotNull();
-        assertThat(response1.getBody().getAccountHolder()).isEqualTo("Omid");
+        assertThat(response1.getBody().getName()).isEqualTo("Omid");
         assertThat(response1.getBody().getBalance()).isEqualTo(initBalanceAcc1);
 
-        TransactionDto dto2 = new TransactionDto(createAccountNo2, "", "Saeed", initBalanceAcc2);
+        TransactionInputDto dto2 = new TransactionInputDto(createAccountNo2, "", "Saeed", initBalanceAcc2);
         ResponseEntity<BankAccount> response2 = testRestTemplate.postForEntity(pathPrefix + "/create", dto2, BankAccount.class);
         assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response2.getBody()).isNotNull();
-        assertThat(response2.getBody().getAccountHolder()).isEqualTo("Saeed");
+        assertThat(response2.getBody().getName()).isEqualTo("Saeed");
         assertThat(response2.getBody().getBalance()).isEqualTo(initBalanceAcc2);
     }
 
     @Test
     @Order(15)
     public void testCreateUserFailDuplicateAccountNo() {
-        TransactionDto dto = new TransactionDto(createAccountNo1, "", "Omid", initBalanceAcc1);
-        ResponseEntity<ResponseErrorDto> response = testRestTemplate.postForEntity(pathPrefix + "/create", dto, ResponseErrorDto.class);
+        TransactionInputDto dto = new TransactionInputDto(createAccountNo1, "", "Omid", initBalanceAcc1);
+        ResponseEntity<ResponseDto> response = testRestTemplate.postForEntity(pathPrefix + "/create", dto, ResponseDto.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getResCode()).isEqualTo("002");
@@ -78,7 +78,7 @@ public class BankIntegrationTest {
         double amount = 1;
 
         ResponseEntity<Double> response = testRestTemplate.postForEntity(
-                pathPrefix + "/deposit", new TransactionDto(createAccountNo1, amount), Double.class);
+                pathPrefix + "/deposit", new TransactionInputDto(createAccountNo1, amount), Double.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isEqualTo(initBalanceAcc1 + amount);
@@ -90,7 +90,7 @@ public class BankIntegrationTest {
         double amount = 1;
 
         ResponseEntity<Double> response = testRestTemplate.postForEntity(
-                pathPrefix + "/withdraw", new TransactionDto(createAccountNo1, amount), Double.class);
+                pathPrefix + "/withdraw", new TransactionInputDto(createAccountNo1, amount), Double.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isEqualTo(initBalanceAcc1);
@@ -101,7 +101,7 @@ public class BankIntegrationTest {
     public void testTransferSuccess1() {
         double amount = 1;
 
-        TransactionDto dto = new TransactionDto(createAccountNo1, createAccountNo2, null, amount);
+        TransactionInputDto dto = new TransactionInputDto(createAccountNo1, createAccountNo2, null, amount);
 
         ResponseEntity<Double> response = testRestTemplate.postForEntity(pathPrefix + "/transfer", dto, Double.class);
 
@@ -120,7 +120,7 @@ public class BankIntegrationTest {
     public void testTransferSuccess2() {
         double amount = 1;
 
-        TransactionDto dto = new TransactionDto(TEST_ACCOUNT_NO1, TEST_ACCOUNT_NO2, null, amount);
+        TransactionInputDto dto = new TransactionInputDto(TEST_ACCOUNT_NO1, TEST_ACCOUNT_NO2, null, amount);
         ResponseEntity<Double> response = testRestTemplate.postForEntity(pathPrefix + "/transfer", dto, Double.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
@@ -137,9 +137,9 @@ public class BankIntegrationTest {
     public void testTransferFailInsufficientFund() {
         double amount = 10000;
 
-        TransactionDto dto = new TransactionDto(createAccountNo2, createAccountNo1, null, amount);
+        TransactionInputDto dto = new TransactionInputDto(createAccountNo2, createAccountNo1, null, amount);
 
-        ResponseEntity<ResponseErrorDto> response = testRestTemplate.postForEntity(pathPrefix + "/transfer", dto, ResponseErrorDto.class);
+        ResponseEntity<ResponseDto> response = testRestTemplate.postForEntity(pathPrefix + "/transfer", dto, ResponseDto.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isNotNull();

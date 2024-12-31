@@ -14,10 +14,10 @@ import javax.persistence.LockModeType;
 public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT b FROM BankAccount b WHERE b.accountNumber = :accountNumber")
+    @Query("SELECT b FROM BankAccount b WHERE b.accountNo = :accountNumber")
     BankAccount findByAccountNumber(String accountNumber);
 
-    @Query("SELECT b FROM BankAccount b WHERE b.accountNumber = :accountNumber")
+    @Query("SELECT b FROM BankAccount b WHERE b.accountNo = :accountNumber")
     BankAccount getByAccountNumber(String accountNumber);
 
 

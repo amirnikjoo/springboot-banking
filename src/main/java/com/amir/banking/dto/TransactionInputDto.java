@@ -8,31 +8,31 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionDto {
+public class TransactionInputDto {
     @JsonProperty
-    private String account;  //source account
+    private String accountNo;  //source account
 
     @JsonProperty
     private String accountTo; //destination account if needed
 
     @JsonProperty
-    private String holderName;
+    private String name;
 
     @JsonProperty
     private double amount;
 
-    public TransactionDto(String account, double amount) {
-        this.account = account;
+    public TransactionInputDto(String accountNo, double amount) {
+        this.accountNo = accountNo;
         this.amount = amount;
     }
 
-    public TransactionDto(String account, String accountTo, double amount) {
-        this.account = account;
+    public TransactionInputDto(String accountNo, String accountTo, double amount) {
+        this.accountNo = accountNo;
         this.accountTo = accountTo;
         this.amount = amount;
     }
 
-    public TransactionDto(String account) {
-        this.account = account;
+    public TransactionInputDto(String accountNo) {
+        this.accountNo = accountNo;
     }
 }
