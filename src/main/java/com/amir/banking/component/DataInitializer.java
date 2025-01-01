@@ -2,7 +2,6 @@ package com.amir.banking.component;
 
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.repository.BankAccountRepository;
-import com.amir.banking.service.BankService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -14,11 +13,9 @@ import static com.amir.banking.util.AppConstants.*;
 public class DataInitializer implements CommandLineRunner {
 
     private final BankAccountRepository bankAccountRepository;
-    private final BankService bankService;
 
-    public DataInitializer(BankAccountRepository bankAccountRepository, BankService bankService) {
+    public DataInitializer(BankAccountRepository bankAccountRepository) {
         this.bankAccountRepository = bankAccountRepository;
-        this.bankService = bankService;
     }
 
     @Override
