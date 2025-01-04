@@ -23,19 +23,19 @@ public class DataInitializer implements CommandLineRunner {
         if (bankAccountRepository.count() == 0) {
             BankAccount bankAccount = new BankAccount(TEST_ACCOUNT_NO1, "Account1", TEST_BALANCE_ACC1);
             bankAccountRepository.save(bankAccount);
-            System.out.println("Inserted bank accountName: " + bankAccount.getName());
+            System.out.println("Inserted bank account: " + bankAccount.getAccountNo());
 
             BankAccount bankAccount2 = new BankAccount(TEST_ACCOUNT_NO2, "Account2", TEST_BALANCE_ACC2);
             bankAccountRepository.save(bankAccount2);
-            System.out.println("Inserted bank accountName: " + bankAccount2.getName());
+            System.out.println("Inserted bank account: " + bankAccount2.getAccountNo());
 
             BankAccount bankAccount3 = new BankAccount(TEST_ACCOUNT_NO3, "Account3", TEST_BALANCE_ACC3);
             bankAccountRepository.save(bankAccount3);
-            System.out.println("Inserted bank accountName: " + bankAccount3.getName());
+            System.out.println("Inserted bank account: " + bankAccount3.getAccountNo());
 
             BankAccount bankAccount4 = new BankAccount(TEST_ACCOUNT_NO4, "Account4", TEST_BALANCE_ACC4);
             bankAccountRepository.save(bankAccount4);
-            System.out.println("Inserted bank accountName: " + bankAccount4.getName());
+            System.out.println("Inserted bank account: " + bankAccount4.getAccountNo());
         }
     }
 }
