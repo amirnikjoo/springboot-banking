@@ -7,8 +7,8 @@ import com.amir.banking.dto.TransactionOutputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.service.BankService;
 import com.amir.banking.util.DateUtil;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,19 +21,20 @@ import static com.amir.banking.util.AppConstants.responseMap;
 
 @RestController
 @RequestMapping("/api/v1/account")
+@AllArgsConstructor
 public class BankController {
     private final BankService bankService;
     private final Tracer tracer;
     private final TransactionLogger logger;
     private final ModelMapper modelMapper;
 
-    @Autowired
-    public BankController(BankService bankService, Tracer tracer, TransactionLogger transactionLogger, ModelMapper modelMapper) {
-        this.bankService = bankService;
-        this.tracer = tracer;
-        this.logger = transactionLogger;
-        this.modelMapper = modelMapper;
-    }
+//    @Autowired
+//    public BankController(BankService bankService, Tracer tracer, TransactionLogger transactionLogger, ModelMapper modelMapper) {
+//        this.bankService = bankService;
+//        this.tracer = tracer;
+//        this.logger = transactionLogger;
+//        this.modelMapper = modelMapper;
+//    }
 
     @PostMapping("/create")
     public ResponseEntity<TransactionOutputDto> createAccount(@RequestBody TransactionInputDto dto) throws Exception {

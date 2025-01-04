@@ -3,26 +3,20 @@ package com.amir.banking.component;
 import com.amir.banking.dto.TransactionInputDto;
 import com.amir.banking.model.BankAccount;
 import com.amir.banking.service.BankService;
-import com.amir.banking.service.BankServiceImplStrategy;
 import com.amir.banking.util.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 import static com.amir.banking.util.AppConstants.TEST_TRACE_ID_LEN;
 
-@Component
+//@Component
 @Order(2)
+@AllArgsConstructor
 public class BankingConsoleUI implements CommandLineRunner {
     private final BankService bankService;
-
-    @Autowired
-    public BankingConsoleUI(BankServiceImplStrategy bankService) {
-        this.bankService = bankService;
-    }
 
     @Override
     public void run(String... args) throws Exception {
