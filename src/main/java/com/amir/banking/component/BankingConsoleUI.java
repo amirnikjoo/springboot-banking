@@ -7,6 +7,7 @@ import com.amir.banking.util.StringUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 

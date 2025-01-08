@@ -26,10 +26,6 @@ public class BankAccount {
     @Column(nullable = false)
     private double balance;
 
-    @Version
-    @JsonIgnore
-    private int version;
-
     public BankAccount(String accountNo, String name, double initialBalance) {
         this.accountNo = accountNo;
         this.name = name;
